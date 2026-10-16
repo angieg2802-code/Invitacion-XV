@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis XV Años - Invitación Especial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-color: #f4f1ea;
+      --card-bg: #fcfbfa;
+      --primary: #4a5d4e;
+      --primary-light: #839887;
+      --accent-gold: #c5a059;
+      --text-dark: #2c352e;
+      --text-muted: #6b7c6e;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: radial-gradient(#d3cbbd 0.75px, transparent 0.75px);
+      background-size: 16px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.08);
+      position: relative;
+      padding-bottom: 60px;
+      overflow-x: hidden;
+    }
+
+    .envelope-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      max-width: 480px;
+      margin: 0 auto;
+      background-color: #eae5d9;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+    }
+
+    .envelope-screen.opened {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .env-title {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .env-names {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .env-date {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 280px;
+      height: 190px;
+      background: #4a5d4e;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wax-seal {
+      width: 65px;
+      height: 65px;
+      background: radial-gradient(circle, #d4af37 0%, #a37c27 100%);
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.4rem;
+      z-index: 10;
+      border: 2px solid #f3e5ab;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope-wrapper:hover .wax-seal { transform: scale(1.08); }
+
+    .tap-hint {
+      margin-top: 25px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+    .passes-card {
+      margin-top: 30px;
+      text-align: center;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      padding: 12px 25px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .passes-title {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .passes-number {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin: 2px 0;
+    }
+
+    .passes-subtitle {
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px 20px;
+      background: linear-gradient(180deg, rgba(244,241,234,0.5) 0%, rgba(252,251,250,1) 100%);
+    }
+
+    .hero-sub {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .hero-date {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .guest-welcome {
+      background: #f4f1ea;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border-left: 3px solid var(--accent-gold);
+    }
+
+    .guest-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .guest-tickets {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .section {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--accent-gold);
+      margin: 8px auto 0 auto;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
